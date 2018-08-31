@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import utils.Constants;
+import com.fitec.formation.wiki.utils.Constants;
 
 @Setter
 @Getter
@@ -18,7 +18,8 @@ import utils.Constants;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CommentModel {
-	
+
+	private String title;
 	private String content;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.DATE_PATTERN)
 	private Date creationDate;

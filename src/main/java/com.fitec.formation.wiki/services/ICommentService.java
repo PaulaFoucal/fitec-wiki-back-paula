@@ -16,6 +16,6 @@ public interface ICommentService<Comment> {
 
     List<Comment> getCommentsByParent (Comment parentComment);
 
-    List<Comment> getCommentsByUser (String username);
+//    List<Comment> getCommentsByUser (String username);
 
 }

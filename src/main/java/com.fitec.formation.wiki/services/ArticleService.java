@@ -6,18 +6,19 @@ import java.util.Objects;
 import com.fitec.formation.wiki.entity.Article;
 import com.fitec.formation.wiki.entity.Status;
 import com.fitec.formation.wiki.repositories.IArticleRepository;
+import com.fitec.formation.wiki.utils.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fitec.formation.wiki.utils.Messages;
-
-import static com.fitec.formation.wiki.utils.Utils.getNullPropertyNames;
 
 @Service
 public class ArticleService implements IArticleService<Article> {
 
 	@Autowired
 	IArticleRepository articleRepository;
+	@Autowired
+    Utils utils;
 
 	@Override
 	public boolean addArticle(Article article) {
@@ -42,7 +43,7 @@ public class ArticleService implements IArticleService<Article> {
 		boolean result = false;
 		Article targetArticle = articleRepository.getOne(sourceArticle.getIdArticle());
 		if (Objects.nonNull(sourceArticle) && articleRepository.existsById(sourceArticle.getIdArticle())) {
-            BeanUtils.copyProperties(sourceArticle, targetArticle, getNullPropertyNames(sourceArticle));
+            BeanUtils.copyProperties(sourceArticle, targetArticle, utils.getNullPropertyNames(sourceArticle));
 		    result = Objects.nonNull(articleRepository.save(targetArticle));
 		    System.out.println(Messages.ARTICLE_SUCCESS_UPDATED);
         } else {
@@ -76,16 +77,16 @@ public class ArticleService implements IArticleService<Article> {
 	    return articles;
     }
 
-    @Override
-    public List<Article> getArticlesByUser(String username) {
-        List<Article> articles = articleRepository.findByUser_UserLogin_UserName(username);
-        return articles;
-    }
+//    @Override
+//    public List<Article> getArticlesByUser(String username) {
+//        List<Article> articles = articleRepository.findByUser_UserLogin_UserName(username);
+//        return articles;
+//    }
 
-    @Override
-    public List<Article> getArticlesByYear(String year) {
-        List<Article> articles = articleRepository.findByCreationDate_Year(year);
-	    return articles;
-    }
+//    @Override
+//    public List<Article> getArticlesByYear(String year) {
+//        List<Article> articles = articleRepository.findByCreationDate_Year(year);
+//	    return articles;
+//    }
 
 }

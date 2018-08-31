@@ -1,4 +1,4 @@
-package utils;
+package com.fitec.formation.wiki.utils;
 
 public interface Constants {
 	

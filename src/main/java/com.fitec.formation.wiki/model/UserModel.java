@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import utils.Constants;
+import com.fitec.formation.wiki.utils.Constants;
 
 @Setter
 @Getter
@@ -26,10 +26,9 @@ public class UserModel {
 	private String lastName;
 	private String firstName;
 	private String email;
-	private String telephoneNumber;
+	private String phone;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.DATE_PATTERN)
 	private Date birthday;
-	private String houseNumber;
 	private String street;
 	private String zipcode;
 	private String city;

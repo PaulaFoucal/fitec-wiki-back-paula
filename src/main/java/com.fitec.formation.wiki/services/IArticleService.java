@@ -18,8 +18,8 @@ public interface IArticleService<Article> {
 
     List<Article> getArticlesByStatus (Status status);
 
-    List<Article> getArticlesByUser (String username);
+//    List<Article> getArticlesByUser (String username);
 
-    List<Article> getArticlesByYear (String year);
+//    List<Article> getArticlesByYear (String year);
 
 }

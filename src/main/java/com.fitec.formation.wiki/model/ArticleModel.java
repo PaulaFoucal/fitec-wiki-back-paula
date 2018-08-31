@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import utils.Constants;
+import com.fitec.formation.wiki.utils.Constants;
 
 @Setter
 @Getter

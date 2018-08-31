@@ -3,6 +3,7 @@ package com.fitec.formation.wiki.entity;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,28 +15,26 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "USER")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_USER")
+    @Column(name = "ID_USER")
 	private Long idUser;
 
 	@Embedded
-	private UserLogIn userLogin;
+	private UserLogger userLogger;
 
 	@Embedded
-	private UserDetail userDetail;
+	private UserInfo userInfo;
 
-	@OneToMany(mappedBy = "ARTICLE")
+    @ManyToOne (cascade = CascadeType.ALL)
+    private Status status;
+
+	@OneToMany(mappedBy = "user")
 	private List<Article> articles;
 	
-	@OneToMany(mappedBy = "COMMENT")
+	@OneToMany(mappedBy = "user")
 	private List<Comment> comments;
-
-	@Column(name = "STATUS_TYPE", nullable = false)
-	@ManyToOne
-	private Status status;
 
 }

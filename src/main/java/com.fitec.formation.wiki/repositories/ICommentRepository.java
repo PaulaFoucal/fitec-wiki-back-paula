@@ -9,6 +9,6 @@ public interface ICommentRepository extends JpaRepository<Comment, Long>{
 
     List<Comment> findByParentComment (Comment parentComment);
 
-    List<Comment> findByUser_UserLogin_UserName (String username);
+//    List<Comment> findByUser_UserLogin_UserName (String username);
 
 }

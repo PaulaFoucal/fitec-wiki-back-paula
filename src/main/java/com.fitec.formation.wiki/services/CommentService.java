@@ -5,16 +5,19 @@ import java.util.Objects;
 
 import com.fitec.formation.wiki.entity.Comment;
 import com.fitec.formation.wiki.repositories.ICommentRepository;
+import com.fitec.formation.wiki.utils.Utils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fitec.formation.wiki.utils.Messages;
-
-import static com.fitec.formation.wiki.utils.Utils.getNullPropertyNames;
 
 @Service
 public class CommentService implements ICommentService<Comment> {
 
+	@Autowired
 	ICommentRepository commentRepository;
+	@Autowired
+	Utils utils;
 	
 	@Override
 	public boolean addComment(Comment comment) {
@@ -39,7 +42,7 @@ public class CommentService implements ICommentService<Comment> {
 		boolean result = false;
 		Comment targetComment = commentRepository.getOne(sourceComment.getIdComment());
 		if (Objects.nonNull(sourceComment) && commentRepository.existsById(sourceComment.getIdComment())) {
-            BeanUtils.copyProperties(sourceComment, targetComment, getNullPropertyNames(sourceComment));
+            BeanUtils.copyProperties(sourceComment, targetComment, utils.getNullPropertyNames(sourceComment));
             result = Objects.nonNull(commentRepository.save(targetComment));
             System.out.println(Messages.COMMENT_SUCCESS_UPDATED);
         } else {
@@ -73,10 +76,10 @@ public class CommentService implements ICommentService<Comment> {
 	    return comments;
 	}
 
-	@Override
-	public List<Comment> getCommentsByUser(String username) {
-        List<Comment> comments = commentRepository.findByUser_UserLogin_UserName(username);
-		return comments;
-	}
+//	@Override
+//	public List<Comment> getCommentsByUser(String username) {
+//        List<Comment> comments = commentRepository.findByUser_UserLogin_UserName(username);
+//		return comments;
+//	}
 
 }

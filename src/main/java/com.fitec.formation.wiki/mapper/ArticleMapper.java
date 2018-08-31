@@ -4,7 +4,7 @@ import com.fitec.formation.wiki.entity.Article;
 import com.fitec.formation.wiki.entity.Comment;
 import com.fitec.formation.wiki.model.ArticleModel;
 import com.fitec.formation.wiki.model.CommentModel;
-import utils.Messages;
+import com.fitec.formation.wiki.utils.Messages;
 
 /*
  * Map model and entity

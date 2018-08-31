@@ -17,11 +17,11 @@ public interface IUserService<User> {
 
     List<User> getUsers ();
 
-    User getUserByUsername (String username);
+//    User getUserByUsername (String username);
 
     List<User> getUsersByStatus (Status status);
 
-    List<User> getUsersByProfile (Profile profile);
+//    List<User> getUsersByProfile (Profile profile);
 
     boolean setStatus (Object object, Status status);
 

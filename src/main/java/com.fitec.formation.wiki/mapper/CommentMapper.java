@@ -2,7 +2,7 @@ package com.fitec.formation.wiki.mapper;
 
 import com.fitec.formation.wiki.entity.Comment;
 import com.fitec.formation.wiki.model.CommentModel;
-import utils.Messages;
+import com.fitec.formation.wiki.utils.Messages;
 
 /*
  * Map model and entity
@@ -15,6 +15,7 @@ public class CommentMapper {
 
 	public static Comment mapToComment(CommentModel cm) {
 		Comment c = new Comment();
+		c.setTitle(cm.getTitle());
 		c.setContent(cm.getContent());
 		c.setCreationDate(cm.getCreationDate());
 		c.setStatus(StatusMapper.mapToStatus(cm.getStatusModel()));
@@ -30,6 +31,7 @@ public class CommentMapper {
 
 	public static CommentModel mapToCommentModel(Comment c) {
 		CommentModel cm = new CommentModel();
+		cm.setTitle(c.getTitle());
 		cm.setContent(c.getContent());
 		cm.setCreationDate(c.getCreationDate());
 		cm.setStatusModel(StatusMapper.mapToStatusModel(c.getStatus()));

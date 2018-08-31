@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface IUserRepository extends JpaRepository<User, Long>{
 
-    User findByUserLogin_UserName(String username);
+//    User findByUserLogin_UserName(String username);
 
 	List<User> findByStatus (Status status);
 
-    List<User> findByUserLogin_Profile (Profile profile);
+//    List<User> findByUserLogin_Profile (Profile profile);
 	
 }

@@ -9,24 +9,25 @@ import com.fitec.formation.wiki.entity.Profile;
 import com.fitec.formation.wiki.entity.Status;
 import com.fitec.formation.wiki.entity.User;
 import com.fitec.formation.wiki.repositories.IUserRepository;
+import com.fitec.formation.wiki.utils.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fitec.formation.wiki.utils.Messages;
-
-import static com.fitec.formation.wiki.utils.Utils.getNullPropertyNames;
 
 @Service
 public class UserService implements IUserService<User> {
 
     @Autowired
     IUserRepository userRepository;
+    @Autowired
+    Utils utils;
 
     @Override
     public boolean addUser(User user) {
         boolean result = false;
         if (Objects.nonNull(user)) {
-            result = userRepository.save(user) != null;
+            result = Objects.nonNull(userRepository.save(user));
             System.out.println(Messages.USER_SUCCESS_ADDED);
         } else {
             System.out.println(Messages.USER_ERROR_NULL);
@@ -45,7 +46,7 @@ public class UserService implements IUserService<User> {
         boolean result = false;
         User targetUser = userRepository.getOne(sourceUser.getIdUser());
         if (Objects.nonNull(sourceUser) && userRepository.existsById(sourceUser.getIdUser())) {
-            BeanUtils.copyProperties(sourceUser, targetUser, getNullPropertyNames(sourceUser));
+            BeanUtils.copyProperties(sourceUser, targetUser, utils.getNullPropertyNames(sourceUser));
             result = Objects.nonNull(userRepository.save(targetUser));
             System.out.println(Messages.USER_SUCCESS_UPDATED);
         } else {
@@ -73,11 +74,11 @@ public class UserService implements IUserService<User> {
         return users;
     }
 
-    @Override
-    public User getUserByUsername(String username) {
-        User user = userRepository.findByUserLogin_UserName(username);
-        return user;
-    }
+//    @Override
+//    public User getUserByUsername(String username) {
+//        User user = userRepository.findByUserLogin_UserName(username);
+//        return user;
+//    }
 
     @Override
     public List<User> getUsersByStatus(Status status) {
@@ -85,11 +86,11 @@ public class UserService implements IUserService<User> {
         return users;
     }
 
-    @Override
-    public List<User> getUsersByProfile(Profile profile) {
-        List<User> users = userRepository.findByUserLogin_Profile(profile);
-        return users;
-    }
+//    @Override
+//    public List<User> getUsersByProfile(Profile profile) {
+//        List<User> users = userRepository.findByUserLogin_Profile(profile);
+//        return users;
+//    }
 
 
     @Override

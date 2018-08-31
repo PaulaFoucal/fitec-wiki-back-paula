@@ -2,30 +2,32 @@ package com.fitec.formation.wiki.utils;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.stereotype.Component;
 
 import java.beans.PropertyDescriptor;
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class Utils {
 
-//	public static Date createDate(String dateStr) {
-//
-//		SimpleDateFormat sdf = new SimpleDateFormat(utils.Constants.DATE_PATTERN);
-//		Date date = new Date();
-//		try {
-//			date = sdf.parse(dateStr);
-//		} catch (ParseException e) {
-//			System.out.println(utils.Messages.DATE_ERROR_MESSAGE);
-//			e.printStackTrace();
-//		}
-//		return date;
-//	}
+	public Date createDate(String dateStr) {
 
-	public static String[] getNullPropertyNames(Object source) {
+		SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_PATTERN);
+		Date date = new Date();
+		try {
+			date = sdf.parse(dateStr);
+		} catch (ParseException e) {
+			System.out.println(Messages.DATE_ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		return date;
+	}
+
+	public String[] getNullPropertyNames(Object source) {
 
 		final BeanWrapper src = new BeanWrapperImpl(source);
 		PropertyDescriptor[] pds = src.getPropertyDescriptors();
